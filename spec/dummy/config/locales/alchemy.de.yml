@@ -22,7 +22,13 @@ de:
       richtext: Dieser Inhaltstyp stellt formatierbaren Text dar
       select: Dieser Inhaltstyp stellt Werte dar aus denen der Redakteur wählen kann
       text: Dieser Inhaltstyp stellt eine einfache Zeile Text dar
-
+    ingredient_validation_hints:
+      uniqueness: darf nur einmal pro Seite vorkommen
+      format: muss dem Format %{regexp} entsprechen
+      presence: muss angegeben werden
+      length:
+        minimum: muss mindestens %{count} Zeichen lang sein
+        maximum: darf maximal %{count} Zeichen lang sein
   activerecord:
     attributes:
       alchemy/picture_description:

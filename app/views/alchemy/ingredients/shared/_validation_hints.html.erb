@@ -1,0 +1,5 @@
+<% if ingredient.validation_hints.any? %>
+  <small class="validation-hint">
+    <%= ingredient.validation_hints.to_sentence %>
+  </small>
+<% end %>

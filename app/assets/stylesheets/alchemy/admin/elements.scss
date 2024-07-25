@@ -917,6 +917,11 @@ select.long {
       bottom: var(--spacing-1);
     }
   }
+
+  .validation-hint {
+    display: block;
+    text-align: right;
+  }
 }
 
 div.pictures_for_element {

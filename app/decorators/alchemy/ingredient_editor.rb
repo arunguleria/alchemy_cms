@@ -153,6 +153,39 @@ module Alchemy
       end
     end
 
+    def validations
+      definition.fetch(:validate, [])
+    end
+
+    def validation_hints
+      scope = "ingredient_validation_hints"
+      validations.flat_map do |validation|
+        if validation.is_a?(Hash)
+          validation.flat_map do |type, options|
+            if type == "length"
+              options.map do |name, count|
+                Alchemy.t(name, scope: "#{scope}.length", count: count)
+              end
+            elsif type == "format"
+              Alchemy.t(type, scope: scope, regexp: options.inspect)
+            else
+              Alchemy.t(type, scope: scope)
+            end
+          end
+        else
+          Alchemy.t(validation, scope: scope)
+        end
+      end
+    end
+
+    def format_validation
+      validations.select { _1.is_a?(Hash) }.find { _1[:format] }&.fetch(:format)
+    end
+
+    def length_validation
+      validations.select { _1.is_a?(Hash) }.find { _1[:length] }&.fetch(:length)
+    end
+
     private
 
     def form_field_counter
